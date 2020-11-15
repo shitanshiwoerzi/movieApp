@@ -8,7 +8,7 @@ const SiteHeader = () => {
   return (
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
       <nav className="navbar-brand text-white">
-        <Link className=" text-white" to="/">
+        <Link className=" text-white" to="/home">
           TMDB Client
         </Link>
       </nav>
@@ -28,13 +28,14 @@ const SiteHeader = () => {
       <nav className="navbar navbar-expand ">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
+            <Link className="nav-link text-white" to="/home">
               Home
             </Link>
           </li>
           <li className="nav-item">
+            
             <Link className="nav-link text-white" to="/movies/upcoming">
-              Upcoming
+                Upcoming
             </Link>
           </li>
           <li className="nav-item">
