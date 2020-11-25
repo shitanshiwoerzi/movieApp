@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Input, Card} from 'antd';
-import { withRouter,Link } from "react-router-dom";
+import { Form, Input, Card, Button} from 'antd';
+import { withRouter ,Link} from "react-router-dom";
 
 const layout = {
     labelCol: {
@@ -17,7 +17,6 @@ const layout = {
       span: 16,
     },
   };
-  
   const LoginPage = () => {
     // 提交表单且数据验证成功后回调事件
     const onFinish = values => {
@@ -28,11 +27,11 @@ const layout = {
     const onFinishFailed = errorInfo => {
       console.log('Failed:', errorInfo);
     };
-
+    
   
     return (
-    <Card title="登陆页面" className="login-form">
-      <Form
+    <Card title="MoviesApp" className="login-form">
+      <Form 
         {...layout}
         name="basic"
         initialValues={{
@@ -42,12 +41,12 @@ const layout = {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="用户名"
-          name="用户名"
+          label="username"
+          name="username"
           rules={[
             {
               required: true,
-              message: '请输入用户名',
+              message: 'Please input username',
             },
           ]}
         >
@@ -55,12 +54,12 @@ const layout = {
         </Form.Item>
   
         <Form.Item
-          label="密码"
-          name="密码"
+          label="password"
+          name="password"
           rules={[
             {
               required: true,
-              message: '请输入密码',
+              message: 'please input password',
             },
           ]}
         >
@@ -68,9 +67,9 @@ const layout = {
         </Form.Item>
   
         <Form.Item {...tailLayout}>
-          <Link className="nav-link text-blue" to="/home">
-            登陆
-          </Link>
+          <Button type="primary" className="nav-link text-blue" block htmlType="submit" to="/home">
+            <Link to ='/'>Login</Link>
+          </Button>
         </Form.Item>
       </Form>
     </Card>
