@@ -3,13 +3,34 @@ import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./siteHeader.css";
+import {Menu, Dropdown} from 'antd';
+
+const menu = (
+  <Menu>
+    <Menu.Item>
+    <Link className="nav-link text" to="/">
+                Hot
+            </Link>
+    </Menu.Item>
+    <Menu.Item>
+    <Link className="nav-link text" to="/movies/upcoming">
+                Upcoming
+            </Link>
+    </Menu.Item>
+    <Menu.Item>
+    <Link className="nav-link text" to="/movies/now-playing">
+                Now-playing
+            </Link>
+    </Menu.Item>
+  </Menu>
+);
 
 const SiteHeader = () => {
   return (
     <nav className="navbar  navbar-light fixed-top  bg-dark ">
       <nav className="navbar-brand text-white">
-        <Link className=" text-white" to="/">
-          TMDB Client
+        <Link to='/'>
+        <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="The Movie Database (TMDb)" width="154" height="20"></img>
         </Link>
       </nav>
       <FontAwesomeIcon
@@ -32,16 +53,13 @@ const SiteHeader = () => {
               Login
             </Link>
           </li>
+          <Dropdown overlay={menu} placement="bottomLeft" arrow trigger={['click']}>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/">
-              Home
+              Movies
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/upcoming">
-                Upcoming
-            </Link>
-          </li>
+          </Dropdown>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
               Favorites

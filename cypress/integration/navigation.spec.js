@@ -62,14 +62,14 @@ describe("Navigation", () => {
       cy.visit(`/`);
     });
     it("should change browser URL when show/hide reviews is clicked", () => {
-      cy.get(".card").eq(2).find("img").click();
+      cy.get(".card").eq(1).find("img").click();
       cy.contains("Show Reviews").click();
       cy.url().should("include", `/movies/${movieId}/reviews`);
       cy.contains("Hide Reviews").click();
       cy.url().should("not.include", `/movies/${movieId}/reviews`);
     });
     it("navigate to the full review page when a 'Full Review' link is clicked", () => {
-        cy.get(".card").eq(2).find("img").click();
+        cy.get(".card").eq(1).find("img").click();
         cy.contains("Show Reviews").click();
         cy.url().should("include", `/movies/${movieId}/reviews`);
         cy.contains("Full Review").click();
@@ -84,8 +84,8 @@ describe("Navigation", () => {
     });
     it("should navigate to the movies detail page and change the browser URL", () => {
       cy.get(".card").eq(0).find("img").click();
-      cy.url().should("include", `/movies/${upcoming[0].id}`);
-      cy.get("h2").contains(upcoming[0].title);
+      cy.url().should("include", `/movies/${movies[0].id}`);
+      cy.get("h2").contains(movies[0].title);
     });
   });
   describe("The Go Back button", () => {
@@ -100,11 +100,21 @@ describe("Navigation", () => {
     });
     it("should navigate from favorites page to movie details and back", () => {
       cy.get(".card").eq(0).get("button").eq(0).click();
-      cy.get("a").eq(4).click();
+      cy.get("a").eq(3).click();
       cy.get(".card").eq(0).find("img").click();
       cy.get("svg[data-icon=arrow-circle-left]").click();
       cy.url().should("include", `/movies/favorites`);
     });
   });
 
+  describe("The Dropdown Menu",() => {
+    beforeEach(()=>{
+      cy.visit('/');
+    });
+    it("should navigate to the Nowplaying page and change the browser URL", () =>{
+      cy.get("a").eq(2).click();
+      cy.contains("Now-playing").click();
+      cy.url().should("include", `/movies/now-playing`);
+    })
+  })
 });

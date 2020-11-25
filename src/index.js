@@ -8,6 +8,7 @@ import FavoriteMoviesPage from './pages/favoritesMoviesPage'
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import UpcomingMoviePage from './pages/upcomingMoviesPage'
+import NowplayingMoviePage from './pages/nowplayingMoviesPage';
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
@@ -27,10 +28,11 @@ const App = () => {
             <Route path="/login" component={LoginPage} />  
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
             <Route path="/movies/upcoming" component={UpcomingMoviePage} />
+            <Route path="/movies/now-playing" component={NowplayingMoviePage} />
             <Route path="/reviews/:id" component={MovieReviewPage} />
             <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
-            <Route path="/" component={HomePage} />
             <Route path="/movies/:id" component={MoviePage} />
+            <Route path="/" component={HomePage} />
             
           </Switch>
           <Redirect from="*" to="/" />
