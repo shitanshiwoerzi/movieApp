@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useReducer } from "react";
-import { getMovies, getNowplaying, getToprated, getUpcoming} from "../api/tmdb-api";
+import { getMovies, getNowplaying, getUpcoming} from "../api/tmdb-api";
 
 export const MoviesContext = createContext(null);
 
