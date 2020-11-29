@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./siteHeader.css";
-import {Menu, Dropdown} from 'antd';
+import {Menu, Dropdown, Button} from 'antd';
 
 const menu = (
   <Menu>
     <Menu.Item>
     <Link className="nav-link text" to="/">
-                Hot
+                Popular
             </Link>
     </Menu.Item>
     <Menu.Item>
@@ -20,6 +20,11 @@ const menu = (
     <Menu.Item>
     <Link className="nav-link text" to="/movies/now-playing">
                 Now-playing
+            </Link>
+    </Menu.Item>
+    <Menu.Item>
+    <Link className="nav-link text" to="/movies/top-rated">
+                Top-rated
             </Link>
     </Menu.Item>
   </Menu>
@@ -50,19 +55,23 @@ const SiteHeader = () => {
         <ul className="navbar-nav">
         <li className="nav-item">
             <Link className="nav-link text-white" to="/login">
-              Login
+              <Button className="navbar  navbar-light text-white  bg-dark ">Login</Button>
             </Link>
           </li>
           <Dropdown overlay={menu} placement="bottomLeft" arrow trigger={['click']}>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
-              Movies
-            </Link>
+            <div className="nav-link text-white">
+              <Button className="navbar  navbar-light text-white  bg-dark ">
+                Movies
+              </Button>
+            </div>
           </li>
           </Dropdown>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
+            <Button className="navbar  navbar-light text-white  bg-dark ">
               Favorites
+              </Button>
             </Link>
           </li>
         </ul>

@@ -12,6 +12,7 @@ import NowplayingMoviePage from './pages/nowplayingMoviesPage';
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
+import TopratedMoviePage from './pages/topratedMoviesPage';
 import LoginPage from './pages/loginPage';
 import "./index.css";
 
@@ -29,6 +30,7 @@ const App = () => {
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
             <Route path="/movies/upcoming" component={UpcomingMoviePage} />
             <Route path="/movies/now-playing" component={NowplayingMoviePage} />
+            <Route path="/movies/top-rated" component={TopratedMoviePage} />
             <Route path="/reviews/:id" component={MovieReviewPage} />
             <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
             <Route path="/movies/:id" component={MoviePage} />
