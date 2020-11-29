@@ -68,6 +68,13 @@ const SiteHeader = () => {
           </li>
           </Dropdown>
           <li className="nav-item">
+            <Link className="nav-link text-white" to="/person">
+            <Button className="navbar  navbar-light text-white  bg-dark ">
+              People
+              </Button>
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
             <Button className="navbar  navbar-light text-white  bg-dark ">
               Favorites
