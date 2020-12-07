@@ -1,21 +1,15 @@
-import React, { useContext } from "react";
-import {MoviesContext} from '../contexts/moviesContext'
-import AddToWatchListButton from '../components/buttons/addToWatch'
-import PersonCard from "../components/personCard";
+import React, { useContext} from "react";
+import { PeopleContext } from "../contexts/peopleContext";
+import PageTemplate from "../components/tempatePersonListPage";
 
 const PersonPage = () => {
-  const context = useContext(MoviesContext);
-  const movies = context.upcoming.filter((m) => {  // New
-    return !("watchlist" in m);
-  });
+  const context = useContext(PeopleContext);
+  const people = context.people;
+
     return (
-        <PersonCard
-          title='Upcoming Movies'
-          movies={movies}
-          action={(movie) => {
-            return <AddToWatchListButton movie={movie} /> 
-          }}
-        />
+    <PageTemplate 
+    title='Popular People' 
+    people={people}/>
     );
   };
 export default PersonPage;

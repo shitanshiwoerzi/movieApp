@@ -13,5 +13,12 @@ p{
     padding-bottom: 1px;
 }
 .card-title{
-    text-align: center;
+    text-align: left;
+}
+p.sub {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: rgba(43, 43, 43, 0.6);
+    display: block;
+    margin-top: 0;
 }

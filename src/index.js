@@ -16,6 +16,7 @@ import TopratedMoviePage from './pages/topratedMoviesPage';
 import PersonPage from './pages/personPage';
 import LoginPage from './pages/loginPage';
 import "./index.css";
+import PeopleContextProvider from "./contexts/peopleContext";
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
       <div className="container-fluid">
         <MoviesContextProvider>
         <GenresContextProvider>
+        <PeopleContextProvider>
           <Switch>
             <Route path="/login" component={LoginPage} />  
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
@@ -40,6 +42,7 @@ const App = () => {
             
           </Switch>
           <Redirect from="*" to="/" />
+          </PeopleContextProvider>
           </GenresContextProvider> 
         </MoviesContextProvider>
       </div>
