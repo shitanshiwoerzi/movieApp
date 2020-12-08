@@ -3,6 +3,7 @@ import "./movieCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../globals/fontawesome";
 import { Link } from "react-router-dom";
+import { Rate } from 'antd';
 
 const MovieCard = ({movie,action}) =>{
 
@@ -21,13 +22,13 @@ const MovieCard = ({movie,action}) =>{
           />
           </Link>
           <div className="card-body">
-            <h4 className="card-title ">{movie.title}</h4>
+            <h6 className="card-title  center">{movie.title}</h6>
             <p>
               <FontAwesomeIcon icon={["fas", "calendar"]} />
               <span> {movie.release_date}</span>
             </p>
             <p>
-              <FontAwesomeIcon icon={["fas", "star"]} />
+              <Rate disabled allowHalf defaultValue={movie.vote_average/2} />
               <span> {movie.vote_average}</span>
             </p>
           </div>

@@ -5,12 +5,15 @@ import "../../globals/fontawesome";
 
 const MovieHeader = ({ movie, history }) => {
   return (
+    
     <div className="row">
-      <div className="col-6 offset-3">
-        <button onClick={() => history.goBack()}>
+      <div className="col-2">
+      <button onClick={() => history.goBack()}>
         <FontAwesomeIcon icon={["fas", "arrow-circle-left"]} size="2x" />
         <span>{" Back"}</span>
         </button>
+      </div>
+      <div className="col-6 offset-3">
         <h2>
           {movie.title}
           {"  "}

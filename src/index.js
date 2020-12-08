@@ -18,7 +18,6 @@ import LoginPage from './pages/loginPage';
 import "./index.css";
 import PeopleContextProvider from "./contexts/peopleContext";
 
-
 const App = () => {
   return (
     <BrowserRouter>

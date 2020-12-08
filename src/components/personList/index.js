@@ -8,7 +8,7 @@ const PersonList = ({people}) =>{
         <Person key={p.id} person={p}/>
         ));
     return(
-    <div className="row people bg-info">{personCards}</div>
+    <div className="row people ">{personCards}</div>
     );
 };
 export default PersonList;

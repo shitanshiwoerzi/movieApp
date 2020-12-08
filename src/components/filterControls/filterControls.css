@@ -1,10 +1,29 @@
 h4 {
-    padding-top: 5px;
+    padding-top: 50px;
   }
   span {
     margin-right: 10px;
   }
   
   input {
+    width: 180px;
     margin-right: 100px;
   }
+
+ div.filter_panel {
+  padding-left: 20px ;
+    min-width: 180px;
+    width: 180px;
+    border: 2px solid #e3e3e3;
+    border-radius: var(--imageBorderRadius);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(var(--lightGrey), 1);
+  background-color: #fff;
+}

@@ -23,9 +23,9 @@ const reducer = (state, action) => {
         nowplaying:state.nowplaying.map((m) =>
         m.id === action.payload.movie.id ? { ...m, watchlist: true } : m
       ),
-      toprated:state.toprated.map((m) =>
-      m.id === action.payload.movie.id ? { ...m, watchlist: true } : m
-    )
+        toprated:state.toprated.map((m) =>
+        m.id === action.payload.movie.id ? { ...m, watchlist: true } : m
+      ),
       };
 
     case "load":
@@ -44,7 +44,6 @@ const reducer = (state, action) => {
             : m
         ),
         upcoming: [...state.upcoming],
-
         nowplaying: [...state.nowplaying],
         toprated: [...state.toprated]
       };
@@ -58,13 +57,19 @@ const MoviesContextProvider = (props) => {
 
   const addToFavorites = (movieId) => {
     const index = state.movies.map((m) => m.id).indexOf(movieId);
-    dispatch({ type: "add-favorite", payload: { movie: state.movies[index] } });
+    dispatch({ type: "add-favorite", payload: { movie: state.movies[index]} });
   };
   const addToWatchList = (movieId) => {
     const index = state.upcoming.map((m) => m.id).indexOf(movieId);
-    const index1 = state.nowplaying.map((m) => m.id).indexOf(movieId);
-    const index2 = state.toprated.map((m) => m.id).indexOf(movieId);
-    dispatch({ type: "add-watchlist", payload: { movie: state.upcoming[index], movie: state.nowplaying[index1], movie: state.toprated[index2]}});
+    dispatch({ type: "add-watchlist", payload: { movie: state.upcoming[index]}});
+  };
+  const addToWatchList2 = (movieId) => {
+    const index = state.nowplaying.map((m) => m.id).indexOf(movieId);
+    dispatch({ type: "add-watchlist", payload: { movie: state.nowplaying[index]}});
+  };
+  const addToWatchList3 = (movieId) => {
+    const index = state.toprated.map((m) => m.id).indexOf(movieId);
+    dispatch({ type: "add-watchlist", payload: { movie: state.toprated[index]}});
   };
   const addReview = (movie, review) => {
     dispatch({ type: "add-review", payload: { movie, review } });
@@ -107,6 +112,8 @@ const MoviesContextProvider = (props) => {
         nowplaying: state.nowplaying,
         toprated: state.toprated,
         addToFavorites: addToFavorites,
+        addToWatchList2:addToWatchList2,
+        addToWatchList3:addToWatchList3,
         addReview: addReview,
         addToWatchList:addToWatchList
       }}
