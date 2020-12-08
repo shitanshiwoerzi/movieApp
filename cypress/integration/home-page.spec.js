@@ -36,8 +36,8 @@ describe("Home Page ", () => {
         const searchString = 'p'
         const matchingMovies = filterByTitle(movies, searchString );
         cy.get("input").clear().type(searchString) ;
-        cy.get(".card").should("have.length", matchingMovies.length);
-        cy.get(".card").each(($card, index) => {
+        cy.get(".col-sm-3").should("have.length", matchingMovies.length);
+        cy.get(".col-sm-3").each(($card, index) => {
           cy.wrap($card)
           .find(".card-title")
           .should("have.text", matchingMovies[index].title);
@@ -47,8 +47,8 @@ describe("Home Page ", () => {
         const searchString = "o";
         const matchingMovies = filterByTitle(movies, searchString);
         cy.get("input").clear().type(searchString);
-        cy.get(".card").should("have.length", matchingMovies.length);
-        cy.get(".card").each(($card, index) => {
+        cy.get(".col-sm-3").should("have.length", matchingMovies.length);
+        cy.get(".col-sm-3").each(($card, index) => {
           cy.wrap($card)
           .find(".card-title")
           .should("have.text", matchingMovies[index].title);
@@ -58,7 +58,7 @@ describe("Home Page ", () => {
         const searchString = "xyz";
         const matchingMovies = filterByTitle(movies, searchString);
         cy.get("input").clear().type(searchString);
-        cy.get(".card").should("have.length", matchingMovies.length);
+        cy.get(".col-sm-3").should("have.length", matchingMovies.length);
       })
     });
     describe("By movie genre" ,() => {
@@ -67,8 +67,8 @@ describe("Home Page ", () => {
         const selectedGenreText = "Comedy";
         const matchingMovies = filterByGenre(movies, selectedGenreId);
         cy.get("select").select(selectedGenreText); 
-        cy.get(".card").should("have.length", matchingMovies.length);
-        cy.get(".card").each(($card, index) => {
+        cy.get(".col-sm-3").should("have.length", matchingMovies.length);
+        cy.get(".col-sm-3").each(($card, index) => {
           cy.wrap($card)
             .find(".card-title")
             .should("have.text", matchingMovies[index].title);
@@ -85,8 +85,8 @@ describe("Home Page ", () => {
       const matchingMovies1 = filterByGenre(movies, selectedGenreId);
       cy.get("input").clear().type(searchString);
       cy.get("select").select(selectedGenreText); 
-      cy.get(".card").should("have.length",matchingMovies.filter(n =>{return matchingMovies1.indexOf(n)!= -1}).length);
-      cy.get(".card").each(($card, index) => {
+      cy.get(".col-sm-3").should("have.length",matchingMovies.filter(n =>{return matchingMovies1.indexOf(n)!= -1}).length);
+      cy.get(".col-sm-3").each(($card, index) => {
         cy.wrap($card)
         .find(".card-title")
         .should("have.text", matchingMovies.filter(n =>{return matchingMovies1.indexOf(n)!= -1})[index].title);

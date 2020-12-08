@@ -3,14 +3,16 @@ import "./movieCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../globals/fontawesome";
 import { Link } from "react-router-dom";
-import { Rate } from 'antd';
+import { Rate , Card} from 'antd';
 
 const MovieCard = ({movie,action}) =>{
 
     return (
         <div className="col-sm-3">
         <div className="card  bg-white">
-          <Link to= {`/movies/${movie.id}`}>
+          
+           <Card cover={
+             <Link to= {`/movies/${movie.id}`}>
           <img
             className="card-img-tag center "
             alt={movie.title}
@@ -19,9 +21,10 @@ const MovieCard = ({movie,action}) =>{
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
                 : "./film-poster-placeholder.png"
             }
-          />
-          </Link>
-          <div className="card-body">
+          /> </Link>}
+          actions={[action(movie)]}
+          >
+            <div className="card-body">
             <h6 className="card-title  center">{movie.title}</h6>
             <p>
               <FontAwesomeIcon icon={["fas", "calendar"]} />
@@ -32,9 +35,9 @@ const MovieCard = ({movie,action}) =>{
               <span> {movie.vote_average}</span>
             </p>
           </div>
-          <div className="card-footer">
-            {action(movie)}
-          </div>
+          </Card> 
+          
+          
         </div>
       </div>
     );

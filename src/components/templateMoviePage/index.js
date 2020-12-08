@@ -1,6 +1,7 @@
 import React from "react";
 import MovieHeader from '../headerMovie'
 import "./moviePage.css";
+import { Image } from 'antd';
 
 const TemplateMoviePage = ({ movie, children }) => {
   return (
@@ -8,7 +9,7 @@ const TemplateMoviePage = ({ movie, children }) => {
       <MovieHeader movie={movie} />
       <div className="row">
         <div className="col-3">
-          <img
+          <Image
             src={
               movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`

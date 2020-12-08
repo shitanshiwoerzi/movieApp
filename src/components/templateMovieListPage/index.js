@@ -28,7 +28,7 @@ const MovieListPageTemplate = ({movies, title, action}) => {
   return (
     <>
     <Layout>
-      <Sider theme={"light"} width={250}>
+      <Sider theme={"light"} width={200}>
       <FilterControls onUserInput={handleChange} numMovies={displayedMovies.length}/>
       </Sider>
       <Layout>

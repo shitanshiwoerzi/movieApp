@@ -29,7 +29,7 @@ describe("Movie Details Page", () => {
   });
   beforeEach(() => {
     cy.visit(`/`);
-    cy.get(".card").eq(2).find("img").click();
+    cy.get(".col-sm-3").eq(2).find("img").click();
   });
 
   it("should display movie title in the page header", () => {

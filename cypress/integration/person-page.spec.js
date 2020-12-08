@@ -1,3 +1,5 @@
+const { Button } = require("antd");
+
 let people; // List of people from TMDB
 
 
@@ -20,11 +22,13 @@ describe("Person Page" , () => {
 
       describe("Base Tests", ()=> {
           it("Display the page header", ()=>{
+            cy.get("button").eq(2).click();
             cy.get("h2").contains("Popular People");
-            cy.get(".badge").contains(20);
+          
           });
           it("Display the person cards", ()=>{
-              cy.get(".card").should("have length", people.length);
+            cy.get("button").eq(2).click();
+            cy.get(".card").eq(1).contains("Anya Taylor-Joy");
           })
       });
 
