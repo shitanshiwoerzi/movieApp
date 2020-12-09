@@ -1,6 +1,5 @@
 let personId = null
 let person;
-let reviews;
 describe("Person Details Page", () => {
     before(() => {
         cy.request(
@@ -10,13 +9,14 @@ describe("Person Details Page", () => {
           )
           .its("body")
           .then((response) => {
-            return response.results[2].id;
+            console.log(response.results[1].id);
+            return response.results[1].id;
           })
         .then((arbitraryPersonIdignored) => {
             personId = arbitraryPersonIdignored
             return cy
               .request(
-                `https://api.themoviedb.org/3/movie/${personId}?api_key=${Cypress.env(
+                `https://api.themoviedb.org/3/person/${personId}?api_key=${Cypress.env(
                   "TMDB_KEY"
                 )}`
               )
@@ -29,20 +29,21 @@ describe("Person Details Page", () => {
         });
 beforeEach(() => {
     cy.visit(`/`);
-    cy.get(".col-sm-3").eq(2).find("img").click();
+    cy.get("button").eq(2).click();
+    cy.get(".col-sm-3").eq(1).find("img").click();
   });
   it("should display person name in the page header", () => {
-    cy.get("h2").contains(movie.name);
+    cy.get("h2").contains(person.name);
   });
-  it("should display the movie's details", () => {
+  it("should display the person's details", () => {
     cy.get("h4").contains("Biography");
-    cy.get("h4").next().contains(person.biography);
     cy.get("h3").contains("Personal Info");
     cy.get("p").contains(person.place_of_birth);
-    cy.get("ul").eq(0).contains(person.also_know_as);
+    cy.get("li").contains(person.also_known_as[0]);
 
   });
-  it("should display the person poster" ,()=> {
-    cy.get("img").should("have.attr","src")
+  it("should display the person poster & Known for posters" ,()=> {
+    cy.get("img").eq(1).should("have.attr","src");
+    cy.get("img").eq(2).should("have.attr","src");
 });
 });
