@@ -55,7 +55,7 @@ const SiteHeader = () => {
           </li>
           </Dropdown>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/person">
+            <Link className="nav-link text-white" to="/people">
             <Button ghost className="navbar  navbar-light text-white color">
               People
               </Button>

@@ -10,7 +10,7 @@ const PersonCard = ({person}) =>{
         <div className="card ">
           
             <Card cover={
-              <Link to= {`/person/${person.id}`}>
+              <Link to= {`/people/${person.id}`}>
           <img
             className="card-img-tag center "
             alt={person.name}
