@@ -17,6 +17,9 @@ const PersonHeader = ({ person, history }) => {
         <h2>
           {person.name}
           {"  "}
+          <a href= "https://www.themoviedb.org/person">
+            <FontAwesomeIcon icon={["fas", "home"]} size="1x" />
+          </a>
         </h2>
       </div>
     </div>

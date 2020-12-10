@@ -1,79 +1,46 @@
 import React from "react";
-import { Form, Input, Card, Button} from 'antd';
-import { withRouter ,Link} from "react-router-dom";
+import { useFirebaseApp } from 'reactfire' ;
+import 'firebase/auth'
+import Login from "../components/signIn";
+import Logout from "../components/signOut";
+import Signup from "../components/signUp";
+import { positions, Provider } from "react-alert";
+import AlertTemplate from 'react-alert-template-basic'
 
-const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
+const options = {
+    timeout: 5000,
+    position: positions.BOTTOM_CENTER
   };
-  
-  const tailLayout = {
-    wrapperCol: {
-      offset: 8,
-      span: 16,
-    },
-  };
-  const LoginPage = () => {
-    // 提交表单且数据验证成功后回调事件
-    const onFinish = values => {
-      console.log('Success:', values);
-    };
-  
-    // 提交表单且数据验证失败后回调事件
-    const onFinishFailed = errorInfo => {
-      console.log('Failed:', errorInfo);
-    };
-    
-  
-    return (
-    <Card title="MoviesApp" className="login-form">
-      <Form 
-        {...layout}
-        name="basic"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          label="username"
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: 'Please input username',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-  
-        <Form.Item
-          label="password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'please input password',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-  
-        <Form.Item {...tailLayout}>
-          <Button type="primary" className="nav-link text-blue" block htmlType="submit" to="/home">
-            <Link to ='/'>Login</Link>
-          </Button>
-        </Form.Item>
-      </Form>
-    </Card>
-    );
-  };
-  
-export default withRouter(LoginPage);
+
+const LoginPage = () =>{
+    const firebase = useFirebaseApp();
+    console.log(firebase);
+    const user = firebase.auth().currentUser;
+    if (user) {
+        console.log("have signed in");
+    } else {
+        console.log("no user is signed in")
+    }
+      return(
+      <>
+      { user &&
+      <>
+      <p>have signed in</p>
+      <Logout></Logout>
+      </>
+      }
+      { !user &&
+      <>
+      <Provider template={AlertTemplate} {...options}>
+      <p>no user is signed in</p>
+      <Login />
+      <Signup />
+      </Provider>
+      </>
+      }
+      
+      </>
+      );
+}
+
+export default LoginPage;

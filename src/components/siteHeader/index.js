@@ -42,7 +42,7 @@ const SiteHeader = () => {
         <ul className="navbar-nav">
         <li className="nav-item">
             <Link className="nav-link text-white" to="/login">
-              <Button ghost className="navbar  navbar-light text-white  color ">Login</Button>
+              <Button ghost className="navbar  navbar-light text-white  color ">Authen</Button>
             </Link>
           </li>
           <Dropdown overlay={menu} placement="bottomLeft" arrow trigger={['click']}>

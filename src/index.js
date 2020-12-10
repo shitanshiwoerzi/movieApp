@@ -15,12 +15,17 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import TopratedMoviePage from './pages/topratedMoviesPage';
 import PersonPage from './pages/personPage';
 import PersonDetailsPage from './pages/personDetailsPage';
-import LoginPage from './pages/loginPage';
 import "./index.css";
 import PeopleContextProvider from "./contexts/peopleContext";
+import LoginPage from "./pages/loginPage";
+import { FirebaseAppProvider } from 'reactfire' ;
+import firebaseConfig from './firebaseConfig' ;
+import SignUp from './components/signUp'
+import SignOut from './components/signOut'
 
 const App = () => {
   return (
+    < FirebaseAppProvider firebaseConfig = {firebaseConfig} >
     <BrowserRouter>
     <div className="jumbotron">
     <SiteHeader /> 
@@ -28,8 +33,11 @@ const App = () => {
         <MoviesContextProvider>
         <GenresContextProvider>
         <PeopleContextProvider>
+
           <Switch>
+            <Route path="/signout" component={SignOut}></Route>
             <Route path="/login" component={LoginPage} />  
+            <Route path="/signup" component={SignUp} />
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
             <Route path="/movies/upcoming" component={UpcomingMoviePage} />
             <Route path="/movies/now-playing" component={NowplayingMoviePage} />
@@ -49,6 +57,7 @@ const App = () => {
       </div>
     </div>
   </BrowserRouter>
+  </FirebaseAppProvider>
   );
 };
   ReactDOM.render(<App/>,document.getElementById("root"));
