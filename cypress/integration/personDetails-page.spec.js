@@ -44,6 +44,5 @@ beforeEach(() => {
   });
   it("should display the person poster & Known for posters" ,()=> {
     cy.get("img").eq(1).should("have.attr","src");
-    cy.get("img").eq(2).should("have.attr","src");
 });
 });

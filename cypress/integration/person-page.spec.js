@@ -23,12 +23,13 @@ describe("Person Page" , () => {
       describe("Base Tests", ()=> {
           it("Display the page header", ()=>{
             cy.get("button").eq(2).click();
+            cy.url().should('include', '/people')
             cy.get("h2").contains("Popular People");
           
           });
           it("Display the person cards", ()=>{
             cy.get("button").eq(2).click();
-            cy.get(".card").eq(1).contains("Anya Taylor-Joy");
+            cy.get(".card").eq(1).contains(people[1].name);
           })
       });
 
