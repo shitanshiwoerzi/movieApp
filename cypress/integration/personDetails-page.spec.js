@@ -43,6 +43,7 @@ beforeEach(() => {
 
   });
   it("should display the person poster & Known for posters" ,()=> {
+    cy.wait(1000);
     cy.get("img").eq(1).should("have.attr","src");
 });
 });

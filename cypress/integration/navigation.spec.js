@@ -113,6 +113,7 @@ describe("Navigation", () => {
     });
     it("should navigate to the Nowplaying page and change the browser URL", () =>{
       cy.get(".navbar-light").eq(2).click();
+      cy.wait(1000);
       cy.contains("Now-playing").click();
       cy.url().should("include", `/movies/now-playing`);
     })
