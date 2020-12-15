@@ -17,17 +17,17 @@ const FilterControls = props => {
   };
 
   return (
-      <div className="row bg-warning">
+      <div className="row ">
         <div className="col-md-12">
           <h4>
-            <span>List Filtering:</span>
+            <span className="span filter_panel card">List Filtering:</span>
             <input
               type="text"
               placeholder="Title Search"
               onChange={handleTextChange}
             />
-            <span>Genre:</span>
-          <select id="genre" onChange={handleGenreChange}>
+            <span className="span filter_panel card">Genre:</span>
+          <select defaultValue="genre" id="genre" onChange={handleGenreChange}>
               {context.genres.map(genre => {
                 return (
                   <option key={genre.id} value={genre.id}>

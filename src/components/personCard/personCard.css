@@ -1,0 +1,24 @@
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+p{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.card-body{
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.card-title{
+    text-align: left;
+}
+p.sub {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: rgba(43, 43, 43, 0.6);
+    display: block;
+    margin-top: 0;
+}

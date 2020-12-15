@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useReducer } from "react";
-import { getMovies, getUpcoming} from "../api/tmdb-api";
+import { getMovies, getNowplaying, getToprated, getUpcoming} from "../api/tmdb-api";
 
 export const MoviesContext = createContext(null);
 
@@ -11,6 +11,8 @@ const reducer = (state, action) => {
           m.id === action.payload.movie.id ? { ...m, favorite: true } : m
         ),
         upcoming: [...state.upcoming],
+        nowplaying: [...state.nowplaying],
+        toprated: [...state.toprated]
       };
       case "add-watchlist":
       return {
@@ -18,11 +20,22 @@ const reducer = (state, action) => {
           m.id === action.payload.movie.id ? { ...m, watchlist: true } : m
         ),
         movies: [...state.movies],
+        nowplaying:state.nowplaying.map((m) =>
+        m.id === action.payload.movie.id ? { ...m, watchlist: true } : m
+      ),
+        toprated:state.toprated.map((m) =>
+        m.id === action.payload.movie.id ? { ...m, watchlist: true } : m
+      ),
       };
+
     case "load":
-      return { movies: action.payload.movies, upcoming: [...state.upcoming] };
+      return { movies: action.payload.movies, upcoming: [...state.upcoming],  nowplaying:[...state.nowplaying], toprated:[...state.toprated]};
     case "load-upcoming":
-      return { upcoming: action.payload.movies, movies: [...state.movies] };
+      return { upcoming: action.payload.movies, movies: [...state.movies],  nowplaying:[...state.nowplaying], toprated:[...state.toprated]};
+    case "load-nowplaying":
+      return{ nowplaying: action.payload.movies, upcoming:[...state.upcoming], movies:[...state.movies], toprated:[...state.toprated]};
+    case "load-toprated":
+      return{ toprated:action.payload.movies, upcoming:[...state.upcoming], movies:[...state.movies], nowplaying:[...state.nowplaying]};
     case "add-review":
       return {
         movies: state.movies.map((m) =>
@@ -31,6 +44,8 @@ const reducer = (state, action) => {
             : m
         ),
         upcoming: [...state.upcoming],
+        nowplaying: [...state.nowplaying],
+        toprated: [...state.toprated]
       };
     default:
       return state;
@@ -38,15 +53,23 @@ const reducer = (state, action) => {
 };
 
 const MoviesContextProvider = (props) => {
-  const [state, dispatch] = useReducer(reducer, { movies: [], upcoming: [] });
+  const [state, dispatch] = useReducer(reducer, {movies: [], upcoming: [] ,  nowplaying: [] , toprated: [] });
 
   const addToFavorites = (movieId) => {
     const index = state.movies.map((m) => m.id).indexOf(movieId);
-    dispatch({ type: "add-favorite", payload: { movie: state.movies[index] } });
+    dispatch({ type: "add-favorite", payload: { movie: state.movies[index]} });
   };
   const addToWatchList = (movieId) => {
     const index = state.upcoming.map((m) => m.id).indexOf(movieId);
-    dispatch({ type: "add-watchlist", payload: { movie: state.upcoming[index] } });
+    dispatch({ type: "add-watchlist", payload: { movie: state.upcoming[index]}});
+  };
+  const addToWatchList2 = (movieId) => {
+    const index = state.nowplaying.map((m) => m.id).indexOf(movieId);
+    dispatch({ type: "add-watchlist", payload: { movie: state.nowplaying[index]}});
+  };
+  const addToWatchList3 = (movieId) => {
+    const index = state.toprated.map((m) => m.id).indexOf(movieId);
+    dispatch({ type: "add-watchlist", payload: { movie: state.toprated[index]}});
   };
   const addReview = (movie, review) => {
     dispatch({ type: "add-review", payload: { movie, review } });
@@ -66,12 +89,31 @@ const MoviesContextProvider = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(()=>{
+    getNowplaying().then((movies) => {
+      dispatch({ type: "load-nowplaying", payload: { movies } });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(()=>{
+    getToprated().then((movies) => {
+      dispatch({ type: "load-toprated", payload: { movies } });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  
   return (
     <MoviesContext.Provider
       value={{
         movies: state.movies,
         upcoming: state.upcoming,
+        nowplaying: state.nowplaying,
+        toprated: state.toprated,
         addToFavorites: addToFavorites,
+        addToWatchList2:addToWatchList2,
+        addToWatchList3:addToWatchList3,
         addReview: addReview,
         addToWatchList:addToWatchList
       }}

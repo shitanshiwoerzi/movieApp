@@ -10,7 +10,7 @@ import AddToFavoritesButton from '../components/buttons/addToFavorites'
   });
   return (
       <PageTemplate 
-        title='All Movies'
+        title='Popular Movies'
         movies={movies}
         action={(movie) => {
           return <AddToFavoritesButton movie={movie} /> 

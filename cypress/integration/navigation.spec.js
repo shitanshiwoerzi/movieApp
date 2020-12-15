@@ -1,6 +1,7 @@
 let movies;
-const movieId = 497582; // Enola Holmes movie id
+const movieId = 602211; // Enola Holmes movie id
 let reviews;
+let upcoming;
 
 describe("Navigation", () => {
   before(() => {
@@ -14,6 +15,15 @@ describe("Navigation", () => {
         movies = response.results;
       });
     cy.request(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${Cypress.env(
+        "TMDB_KEY"
+        )}&language=en-US&include_adult=false&include_video=false&page=1`
+    )
+    .its("body")
+    .then((response)=>{
+      upcoming = response.results;
+    });
+    cy.request(
       `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${Cypress.env(
         "TMDB_KEY"
       )}`
@@ -25,7 +35,7 @@ describe("Navigation", () => {
       });
   });
 
-  describe("From the home page", () => {
+  /*describe("From the home page", () => {
     beforeEach(() => {
       cy.visit("/");
     });
@@ -46,18 +56,25 @@ describe("Navigation", () => {
       cy.url().should("not.include", `/favorites`);
       cy.get("h2").contains("All Movies");
     });
+<<<<<<< HEAD
   });
   /*describe("From the Movie Details page ", () => {
+=======
+  });*/
+  describe("From the Movie Details page ", () => {
+>>>>>>> staging
     beforeEach(() => {
-      cy.visit(`/movies/${movieId}`);
+      cy.visit(`/`);
     });
     it("should change browser URL when show/hide reviews is clicked", () => {
+      cy.get(".col-sm-3").eq(1).find("img").click();
       cy.contains("Show Reviews").click();
       cy.url().should("include", `/movies/${movieId}/reviews`);
       cy.contains("Hide Reviews").click();
       cy.url().should("not.include", `/movies/${movieId}/reviews`);
     });
     it("navigate to the full review page when a 'Full Review' link is clicked", () => {
+        cy.get(".col-sm-3").eq(1).find("img").click();
         cy.contains("Show Reviews").click();
         cy.url().should("include", `/movies/${movieId}/reviews`);
         cy.contains("Full Review").click();
@@ -67,13 +84,13 @@ describe("Navigation", () => {
   describe("From the Favorites page", () => {
     beforeEach(() => {
       cy.visit("/");
-      cy.get(".card").eq(0).find("button").click();
-      cy.get("nav").find("li").eq(2).find("a").click();
+      cy.get(".col-sm-3").eq(1).find("button").click();
+      cy.get("nav").find("li").eq(3).find("a").click();
     });
     it("should navigate to the movies detail page and change the browser URL", () => {
-      cy.get(".card").eq(0).find("img").click();
-      cy.url().should("include", `/movies/${movies[0].id}`);
-      cy.get("h2").contains(movies[0].title);
+      cy.get(".col-sm-3").eq(0).find("img").click();
+      cy.url().should("include", `/movies/${movies[1].id}`);
+      cy.get("h2").contains(movies[1].title);
     });
   });
   describe("The Go Back button", () => {
@@ -81,18 +98,29 @@ describe("Navigation", () => {
       cy.visit("/");
     });
     it("should navigate from home page to movie details and back", () => {
-      cy.get(".card").eq(1).find("img").click();
+      cy.get(".col-sm-3").eq(1).find("img").click();
       cy.get("svg[data-icon=arrow-circle-left]").click();
       cy.url().should("not.include", `/movies`);
-      cy.get("h2").contains("All Movies");
+      cy.get("h2").contains("Popular Movies");
     });
     it("should navigate from favorites page to movie details and back", () => {
-      cy.get(".card").eq(0).get("button").eq(0).click();
+      cy.get(".col-sm-3").eq(0).find("button").click();
       cy.get("a").eq(3).click();
-      cy.get(".card").eq(0).find("img").click();
+      cy.get(".col-sm-3").eq(0).find("img").click();
       cy.get("svg[data-icon=arrow-circle-left]").click();
       cy.url().should("include", `/movies/favorites`);
     });
   });
 
+  describe("The Dropdown Menu",() => {
+    beforeEach(()=>{
+      cy.visit('/');
+    });
+    it("should navigate to the Nowplaying page and change the browser URL", () =>{
+      cy.get(".navbar-light").eq(2).click();
+      cy.wait(1000);
+      cy.contains("Now-playing").click();
+      cy.url().should("include", `/movies/now-playing`);
+    })
+  })
 });

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import Header from "../headerMovieList";
+import Head from "../headerMovieList";
 import MovieList from "../movieList";
 import FilterControls from "../filterControls";
+import {Layout} from "antd";
+
+const { Sider, Content } = Layout;
 
 const MovieListPageTemplate = ({movies, title, action}) => {
   const [nameFilter, setNameFilter] = useState("");
@@ -24,12 +27,20 @@ const MovieListPageTemplate = ({movies, title, action}) => {
 
   return (
     <>
-      <Header title={title} numMovies={displayedMovies.length} />
+    <Layout>
+      <Sider theme={"light"} width={200}>
       <FilterControls onUserInput={handleChange} numMovies={displayedMovies.length}/>
+      </Sider>
+      <Layout>
+      <Head title={title} numMovies={displayedMovies.length} />
+      <Content>
       <MovieList
         action={action}
         movies={displayedMovies}
       ></MovieList>
+      </Content>
+      </Layout>
+    </Layout>
     </>
   );
 };

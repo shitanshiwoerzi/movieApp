@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
     "projectId": "1oae7d",
     "baseUrl": "http://localhost:3000/"
+=======
+    "baseUrl": "http://localhost:3000/",
+    "projectId":"1oae7d"
+
+>>>>>>> staging
 }

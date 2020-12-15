@@ -59,8 +59,15 @@ test_jobX:
     - master
     - demobranch2
   script:
+<<<<<<< HEAD
     - echo "test job X"
     
+=======
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+>>>>>>> staging
 e2etest:    
     stage: test
     before_script:
